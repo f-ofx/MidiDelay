@@ -93,11 +93,9 @@ void TimeStampAudioProcessor::changeProgramName (int index, const juce::String& 
 //==============================================================================
 void TimeStampAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    delayNote.prepare(); // this prepares the transport function in delay voice
     noteBuffer.resize(1);
     notes.resize(200);
     notes.clear();
-    //noteBuffer.fill(0);
 }
 
 void TimeStampAudioProcessor::releaseResources()
@@ -135,13 +133,12 @@ void TimeStampAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, ju
     juce::ScopedNoDenormals noDenormals;
     jassert (buffer.getNumChannels() == 0);
     midiBuff.clear();
-    //swapNotes.process(midiMessages, noteBuffer, notes);
+    
     melodyNote.process(midiMessages, 0, notes, 0, 0);
     delayNote.process(midiMessages, 12, notes, 1, 44100);
     //
     for (int j = 0; j < buffer.getNumSamples(); ++j)
     {
-        //for (auto& note : notes)
         for (int i = 0; i < notes.size(); i++)
         {
             auto& note = notes.getReference(i);
