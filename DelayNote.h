@@ -40,15 +40,12 @@ class DelayNote
             
             if (currentMessage.isNoteOff())
             {
-                if (notePairs.contains(noteNum))
-                {
-                    tempOffNote.noteNum = noteNum + transposeAmount;
-                    tempOffNote.position = position;
-                    tempOffNote.noteOnMsg = false;
-                    tempOffNote.delayOff = position + delayValue;
-                    notesInfo.add(tempOffNote);
-                    notePairs.remove(noteNum);
-                }
+                tempOffNote.noteNum = noteNum + transposeAmount;
+                tempOffNote.position = position;
+                tempOffNote.noteOnMsg = false;
+                tempOffNote.delayOff = position + delayValue;
+                notesInfo.add(tempOffNote);
+                notePairs.remove(noteNum);
             }
         }
     }
