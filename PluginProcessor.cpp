@@ -139,7 +139,7 @@ void TimeStampAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, ju
     //
     for (int j = 0; j < buffer.getNumSamples(); ++j)
     {
-        for (int i = 0; i < notes.size(); i++)
+        for (int i = 0; i < notes.size(); ++i)
         {
             auto& note = notes.getReference(i);
             
